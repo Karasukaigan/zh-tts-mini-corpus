@@ -40,6 +40,7 @@
 
 ## 快速开始
 
+0. 安装git、Python。
 1. 克隆项目到本地：  
     ```
     git clone https://github.com/Karasukaigan/zh-tts-mini-corpus.git
