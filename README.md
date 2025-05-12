@@ -1,12 +1,14 @@
 # 中文TTS迷你语料库
 
-专为语音克隆项目（如[GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)）设计的轻量级中文TTS语料工具包，包含精选文本集和音频录制工具，帮助快速构建定制化数据集。
+专为语音克隆项目（如[GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)）设计的迷你中文TTS语料工具包，包含精选文本集和音频录制工具，帮助快速构建定制化数据集。
 
 ## 项目特性
 
 - 精选文本集：包含600+句子，涵盖各种发音、语调、情感、场景。
 - 音频录制工具：可快速启动、快速录制、实时监测音频质量。
 ![音频录制器](./src/音频录制器截图.png)
+
+本项目使用[FFmpeg](https://github.com/FFmpeg/FFmpeg)来完成对音频文件的处理。
 
 ## 使用场景
 
