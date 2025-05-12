@@ -36,12 +36,12 @@ def make_valid_filename(filename: str) -> str:
         valid_name = 'default'
     return valid_name
 
-def load_sentences(file_path="zh_corpus_v1.json"):
+def load_sentences(file_path="corpus/zh_corpus_v1.json"):
     """
     从指定路径加载 JSON 格式的句子数据。
     
     参数:
-        file_path (str): 要加载的 JSON 文件的路径，默认值为 "zh_corpus_v1.json"
+        file_path (str): 要加载的 JSON 文件的路径，默认值为 "corpus/zh_corpus_v1.json"
         
     返回值:
         dict: 如果文件成功加载，则返回解析后的字典对象；

@@ -248,13 +248,13 @@ def merge_wav_files(directory, output_file):
     combined_audio.export(output_file, format="wav")
     print(f"所有音频已合并并保存至: {output_file}")
 
-def main(project_name='default', json_file='zh_corpus_v1.json', wav_dir='wav', silence_thresh=-40, keep_silence=500, volume_boost=0):
+def main(project_name='default', json_file='corpus/zh_corpus_v1.json', wav_dir='wav', silence_thresh=-40, keep_silence=500, volume_boost=0):
     """
     主流程函数，用于整理音频文件、生成列表并处理音频。
     
     参数:
         project_name (str): 项目名称，默认为 'default'
-        json_file (str): 存储句子内容的 JSON 文件路径，默认为 'zh_corpus_v1.json'
+        json_file (str): 存储句子内容的 JSON 文件路径，默认为 'corpus/zh_corpus_v1.json'
         wav_dir (str): WAV 文件所在目录，默认为 'wav'
         silence_thresh (int): 静音阈值(dBFS)，默认-40dB
         keep_silence (int): 音频前后保留的静音时长(毫秒)，默认500ms

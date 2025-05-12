@@ -15,7 +15,7 @@ import src.tools as tools
 import src.output as output_tool
 
 wav_output_path = "wav"
-corpus_file_path = "zh_corpus_v1.json"
+corpus_file_path = "corpus/zh_corpus_v1.json"
 
 class SentenceBrowser(QMainWindow):
     def __init__(self):
