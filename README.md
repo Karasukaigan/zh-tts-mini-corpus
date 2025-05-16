@@ -18,7 +18,7 @@
 
 ## 语料库数据统计
 
-1. zh_corpus_v1.json（由[qwen3:32b](https://github.com/QwenLM/Qwen3)根据规则生成）
+1. zh_corpus_v1.json（由[qwen3:32b](https://github.com/QwenLM/Qwen3)根据规则生成，所以有些句子可能看起来有点怪）
     - 句子数：616
     - 总字符数：21059
     - 不重复字符数：2271
