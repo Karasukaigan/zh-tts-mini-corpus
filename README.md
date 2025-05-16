@@ -1,11 +1,11 @@
 # 中文TTS迷你语料库
 
-专为语音克隆项目（如[GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)）设计的迷你中文TTS语料工具包，包含精选文本集和音频录制工具，帮助快速构建定制化数据集。
+专为语音克隆项目（如[GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)、[CosyVoice](https://github.com/FunAudioLLM/CosyVoice)）设计的迷你中文TTS语料工具包，包含精选文本集和音频录制工具，帮助快速构建定制化数据集。
 
 ## 项目特性
 
 - 精选文本集：包含600+句子，涵盖各种发音、语调、情感、场景。
-- 音频录制工具：可快速启动、快速录制、实时监测音频质量。
+- 音频录制工具：可快速启动、快速录制、实时监测音频质量、一键导出[GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)、[CosyVoice](https://github.com/FunAudioLLM/CosyVoice)训练所需的数据集结构。
 ![音频录制器](./src/音频录制器截图.png)
 
 本项目使用[FFmpeg](https://github.com/FFmpeg/FFmpeg)来完成对音频文件的处理。
@@ -54,6 +54,10 @@
     - R键：开始或停止录音操作。
     - P键：播放当前句子对应的已录制音频文件。
 5. 点击菜单栏里的`文件 -> 保存到项目目录`，这将使录制好的音频文件整理成其他语音克隆项目所需的目录结构。您可以在终端查看处理进度，全部处理好后文件会被放到`projects`目录。
+    - `gptsovits_dataset`目录：GPT-SoVITS训练所需的数据集，需要将其放置到例如`GPT-SoVITS-v4-20250422-nvidia50\output`目录里，然后使用WebUI来执行训练。
+    - `cosyvoice_dataset`目录：CosyVoice训练所需的数据集，需要将其放置到例如`CosyVoice/examples/libritts/cosyvoice2/tensorboard/cosyvoice2`目录里，然后修改`run.sh`来执行训练。
+    - `all.wav`：合并了所有音频的音频文件。  
+    ![项目目录](./src/项目目录截图.png)
 6. 点击菜单栏里的`文件 -> 打开项目目录`，然后将对应项目里的文件复制到其他语音克隆项目里使用。  
 
 ## 贡献指南

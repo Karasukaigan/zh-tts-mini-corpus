@@ -272,8 +272,8 @@ def main(project_name='default', json_file='corpus/zh_corpus_v1.json', wav_dir='
     print("完成率:", f"{len(wav_files)/len(sentences)*100:.2f}%")
 
     # 整理数据到项目文件
-    slicer_opt_path = f'{projects_dir}/slicer_opt'
-    list_path = f'{projects_dir}/asr_opt/slicer_opt.list'
+    slicer_opt_path = f'{projects_dir}/gptsovits_dataset/slicer_opt'
+    list_path = f'{projects_dir}/gptsovits_dataset/asr_opt/slicer_opt.list'
     list_data = ""
     n = 0
     for wav_file in wav_files:
@@ -299,6 +299,40 @@ def main(project_name='default', json_file='corpus/zh_corpus_v1.json', wav_dir='
     # 合并音频
     merge_wav_files(slicer_opt_path, f"{projects_dir}/all.wav")
 
+    # CosyVoice数据集
+    cosyvoice_path = f'{projects_dir}/cosyvoice_dataset/libritts/LibriTTS'
+    tts_text_path = f'{projects_dir}/cosyvoice_dataset/tts_text.json'
+    cosyvoice_test_path = f'{cosyvoice_path}/test-clean/{project_name}/all'
+    cosyvoice_dev_path = f'{cosyvoice_path}/dev-clean/{project_name}/all'
+    cosyvoice_train_path = f'{cosyvoice_path}/train-clean-100/{project_name}/all'
+    wav_files = find_wav_files(slicer_opt_path)
+    n = 0
+    for wav_file in wav_files:
+        n += 1
+        print(f"构建CosyVoice数据集({n}/{len(wav_files)})")
+        word = wav_file.split('.wav')[0]
+        if word not in sentences:
+            continue
+        wav_name = f"{project_name}_{word}"
+        wav_path = f"{slicer_opt_path}/{wav_file}"
+        copy_path = f"{cosyvoice_train_path}/{wav_name}.wav"
+        copy_file(wav_path, copy_path)
+        text_path = f"{cosyvoice_train_path}/{wav_name}.normalized.txt"
+        save_string_to_file(sentences[word], text_path)
+        if n <= 5:
+            if n == 1:
+                tts_text = {}
+                tts_text[wav_name] = [sentences[word]]
+                save_json(tts_text, tts_text_path)
+            copy_path = f"{cosyvoice_test_path}/{wav_name}.wav"
+            copy_file(wav_path, copy_path)
+            text_path = f"{cosyvoice_test_path}/{wav_name}.normalized.txt"
+            save_string_to_file(sentences[word], text_path)
+            copy_path = f"{cosyvoice_dev_path}/{wav_name}.wav"
+            copy_file(wav_path, copy_path)
+            text_path = f"{cosyvoice_dev_path}/{wav_name}.normalized.txt"
+            save_string_to_file(sentences[word], text_path)
+        
     output_info = string_stats(merge_text_from_list(list_path))
     output_info["项目名称"] = project_name
     output_info["项目目录"] = projects_dir
