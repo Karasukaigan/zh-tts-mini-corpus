@@ -217,16 +217,20 @@ def find_wav_files(directory):
     return [f for _, _, files in os.walk(directory) 
             for f in files if f.lower().endswith('.wav')]
 
-def merge_wav_files(directory, output_file):
+def merge_wav_files(directory, output_file, max_duration=9999999):
     """
-    遍历指定目录下的所有 .wav 文件，并将其全部合并为一个 .wav 文件并导出。
-    
+    遍历指定目录下的所有 .wav 文件，并将其合并为一个 .wav 文件并导出，支持设置最大音频时长。
+
     参数:
         directory (str): 包含 .wav 文件的目录路径
         output_file (str): 合并后的输出文件路径（包含文件名）
+        max_duration (int 或 float): 最大音频时长(秒)，默认为 9999999 秒
     """
     # 创建一个空音频段用于拼接
     combined_audio = AudioSegment.silent(duration=0)
+
+    # 转换最大时长为毫秒（AudioSegment 使用毫秒作为时间单位）
+    max_duration_ms = max_duration * 1000
 
     # 遍历目录下的所有文件
     for filename in os.listdir(directory):
@@ -235,6 +239,12 @@ def merge_wav_files(directory, output_file):
             try:
                 # 加载音频文件
                 audio = AudioSegment.from_wav(filepath)
+
+                # 检查当前合并后的音频是否超过最大时长
+                if len(combined_audio) + len(audio) > max_duration_ms:
+                    print(f"警告: 已达到最大时长 {max_duration} 秒，停止合并")
+                    break
+
                 # 合并音频
                 combined_audio += audio
                 print(f"已合并: {filename}")
@@ -298,6 +308,7 @@ def main(project_name='default', json_file='corpus/zh_corpus_v1.json', wav_dir='
 
     # 合并音频
     merge_wav_files(slicer_opt_path, f"{projects_dir}/all.wav")
+    merge_wav_files(slicer_opt_path, f"{projects_dir}/2min.wav", 120)
 
     # CosyVoice数据集
     cosyvoice_path = f'{projects_dir}/cosyvoice_dataset/libritts/LibriTTS'

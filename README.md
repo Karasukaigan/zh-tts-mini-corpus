@@ -57,6 +57,7 @@
     - `gptsovits_dataset`目录：GPT-SoVITS训练所需的数据集，需要将其放置到例如`GPT-SoVITS-v4-20250422-nvidia50\output`目录里，然后使用WebUI来执行训练。
     - `cosyvoice_dataset`目录：CosyVoice训练所需的数据集，需要将其放置到例如`CosyVoice/examples/libritts/cosyvoice2/tensorboard/cosyvoice2`目录里，然后修改`run.sh`来执行训练。
     - `all.wav`：合并了所有音频的音频文件。  
+    - `2min.wav`：总长2分钟的音频文件，适用于[必剪](https://member.bilibili.com/york/bilibili-studio/unlogin)音色快速定制。
     ![项目目录](./src/项目目录截图.png)
 6. 点击菜单栏里的`文件 -> 打开项目目录`，然后将对应项目里的文件复制到其他语音克隆项目里使用。  
 
